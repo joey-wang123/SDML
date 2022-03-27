@@ -17,9 +17,10 @@ This repository contains the dataset and code accompanying
 
 1. Install the above packages requirements
 
-
 2. Download ten datasets ( ['Quickdraw', 'Aircraft', 'CUB', 'MiniImagenet', 'Omniglot', 'Plantae', 'Electronic', 'CIFARFS', 'Fungi', 'Necessities']) from google drive [here](https://drive.google.com/file/d/1e7T9WC6nIxm7DhhI-l5DgSy6Jz94fCe5/view?usp=sharing)
 and put the dataset folder in the root directory of this project
+   
+3. Use each dataloader in the DataLoader folder to load each dataset
 
 #### Usage:
 ---
