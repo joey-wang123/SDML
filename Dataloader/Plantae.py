@@ -32,7 +32,7 @@ class Plantaedata(CombinationMetaDataset):
 
 
 class PlantaeClassDataset(ClassDataset):
-    folder = 'Plantae_small'
+    folder = 'Plantae'
     filename = '{0}_data.hdf5'
     filename_labels = '{0}_labels.json'
 
@@ -46,7 +46,6 @@ class PlantaeClassDataset(ClassDataset):
         self.root = os.path.join(os.path.expanduser(root), self.folder)
         self.transform = transform
 
-        print('self.root', self.root)
         self.split_filename = os.path.join(self.root,
             self.filename.format(self.meta_split))
         self.split_filename_labels = os.path.join(self.root,

@@ -1,4 +1,3 @@
-
 import numpy as np
 from PIL import Image
 import os
@@ -13,35 +12,36 @@ from torchmeta.datasets.utils import get_asset
 from torchmeta.transforms import ClassSplitter, Categorical, Rotation
 from torchvision.transforms import ToTensor, Resize, Compose
 from torchmeta.utils.data import BatchMetaDataLoader
+from tqdm import tqdm
 import pickle
 import torch
 
-class Aircraftdata(CombinationMetaDataset):
+class VGGflower(CombinationMetaDataset):
 
     def __init__(self, root, num_classes_per_task=None, meta_train=False,
                  meta_val=False, meta_test=False, meta_split=None,
                  transform=None, target_transform=None, dataset_transform=None,
                  class_augmentations=None, download=False):
-        dataset = AircraftClassDataset(root, meta_train=meta_train, meta_val=meta_val,
+        dataset = VGGflowerClassDataset(root, meta_train=meta_train, meta_val=meta_val,
             meta_test=meta_test, meta_split=meta_split, transform=transform,
             class_augmentations=class_augmentations, download=download)
-        super(Aircraftdata, self).__init__(dataset, num_classes_per_task,
+        super(VGGflower, self).__init__(dataset, num_classes_per_task,
             target_transform=target_transform, dataset_transform=dataset_transform)
 
 
-class AircraftClassDataset(ClassDataset):
-    folder = 'Aircraft'
+class VGGflowerClassDataset(ClassDataset):
+    folder = 'vgg_flower'
     filename_labels = '{0}_labels.json'
     def __init__(self, root, meta_train=False, meta_val=False, meta_test=False,
                  meta_split=None, transform=None, class_augmentations=None,
                  download=False):
-        super(AircraftClassDataset, self).__init__(meta_train=meta_train,
+        super(VGGflowerClassDataset, self).__init__(meta_train=meta_train,
             meta_val=meta_val, meta_test=meta_test, meta_split=meta_split,
             class_augmentations=class_augmentations)
 
         self.root = os.path.join(os.path.expanduser(root), self.folder)
         self.transform = transform
-   
+  
         self.split_filename_labels = os.path.join(self.root,
             self.filename_labels.format(self.meta_split))
 
@@ -57,7 +57,7 @@ class AircraftClassDataset(ClassDataset):
         class_dict = torch.load(self.root + '/'+self.meta_split  + '/' + '{}.pt'.format(label))
         data = class_dict[label]
         
-        return AircraftDataset(index, data, label, transform=transform,
+        return VGGflowerDataset(index, data, label, transform=transform,
                           target_transform=target_transform)
 
     @property
@@ -72,10 +72,10 @@ class AircraftClassDataset(ClassDataset):
         return self._labels
 
 
-class AircraftDataset(Dataset):
+class VGGflowerDataset(Dataset):
     def __init__(self, index, data, label,
                  transform=None, target_transform=None):
-        super(AircraftDataset, self).__init__(index, transform=transform,
+        super(VGGflowerDataset, self).__init__(index, transform=transform,
                                          target_transform=target_transform)
         self.data = data
         self.label = label
@@ -90,3 +90,5 @@ class AircraftDataset(Dataset):
         if self.target_transform is not None:
             target = self.target_transform(target)
         return (image, target)
+
+

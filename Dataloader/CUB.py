@@ -30,7 +30,7 @@ class CUBdata(CombinationMetaDataset):
 
 
 class CUBClassDataset(ClassDataset):
-    folder = 'CUBdata'
+    folder = 'CUB'
     filename = '{0}_data.hdf5'
     filename_labels = '{0}_labels.json'
 

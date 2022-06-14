@@ -49,7 +49,6 @@ class LogoClassDataset(ClassDataset):
         self.split_filename_labels = os.path.join(self.root,
             self.filename_labels.format(self.meta_split))
 
-        print('self.root', self.root)
         self._data_file = None
         self._data = None
         self._labels = None   
