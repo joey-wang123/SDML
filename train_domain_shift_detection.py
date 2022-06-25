@@ -167,7 +167,6 @@ class SequentialMeta(object):
 
 
     def load(self, Interval):
-        self.filepath = '/media/zheshiyige/Backup Plus/experimentdatacode/Meta_Task/protonetnew/output/newdir/protonet_changepoint2_Quickdraw_Aircraft_CUB_MiniImagenet_Omniglot_Plantae_Electronic_CIFARFS_Fungi_Necessities_Embed_dim_64_windowsteps_5/Block4/shot5/way5/'
         filename = os.path.join(self.filepath,  'Interval{0}.pt'.format(Interval))
         print('loading model filename', filename)
         self.model.load_state_dict(torch.load(filename))
