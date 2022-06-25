@@ -1,4 +1,4 @@
-#some codes are borrowed from https://github.com/tristandeleu/pytorch-meta/tree/master/examples/protonet
+#some codes are from https://github.com/tristandeleu/pytorch-meta/tree/master/examples/protonet
 
 import os
 import torch

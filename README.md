@@ -68,7 +68,11 @@ python train_domain_aware.py      --data_path 'data/path'
 ```
 
 
+Training the meta-learning models (Prototypical Network) with online domain shift detection for sequential arriving datasets
 
+```python
+python train_domain_shift_detection.py      --data_path 'data/path'
+```
 
 
 
@@ -88,3 +92,8 @@ python train_domain_aware.py      --data_path 'data/path'
 }
 
 ```
+
+#### Acknowledgement
+
+
+Some codes of Bayesian online changepoint detection are from [link](https://github.com/epfl-lasa/changepoint-detection)
