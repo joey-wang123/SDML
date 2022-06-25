@@ -40,7 +40,7 @@ class PrototypicalNetwork(nn.Module):
         self.in_channels = in_channels
         self.out_channels = out_channels
         self.hidden_size = hidden_size
-        self.taskcla = num_tasks
+        Interval = num_tasks
         self.num_block = num_block
         block_size = int(hidden_size/num_block)
 
@@ -57,7 +57,7 @@ class PrototypicalNetwork(nn.Module):
             self.conv3.append(conv3x3nobatch(hidden_size, block_size))
 
         self.domain_out = torch.nn.ModuleList()
-        for _ in range(self.taskcla):
+        for _ in range(Interval):
             self.task = nn.Sequential(
                 conv3x3(hidden_size, hidden_size),
                 conv3x3(hidden_size, out_channels)
@@ -87,7 +87,7 @@ class PrototypicalNetwork(nn.Module):
   
     def set_req_grad(self, domain_id, req_grad):
 
-        for i in range(self.taskcla):
+        for i in range(Interval):
             if i!= domain_id:
                 params = list(self.domain_out[i].parameters()) 
                 for ind in range(len(params)):
@@ -109,7 +109,7 @@ class PrototypicalNetworkhead1(nn.Module):
         self.in_channels = in_channels
         self.out_channels = out_channels
         self.hidden_size = hidden_size
-        self.taskcla = num_tasks
+        Interval = num_tasks
         self.num_block = num_block
         block_size = int(hidden_size/num_block)
 
@@ -131,7 +131,7 @@ class PrototypicalNetworkhead1(nn.Module):
             self.conv4.append(conv3x3nobatch(hidden_size, block_size))
 
         self.domain_out = torch.nn.ModuleList()
-        for _ in range(self.taskcla):
+        for _ in range(Interval):
             self.task = nn.Sequential(
                 conv3x3(hidden_size, out_channels)
             )
@@ -166,7 +166,7 @@ class PrototypicalNetworkhead1(nn.Module):
   
     def set_req_grad(self, domain_id, req_grad):
 
-        for i in range(self.taskcla):
+        for i in range(Interval):
             if i!= domain_id:
                 params = list(self.domain_out[i].parameters()) 
                 for ind in range(len(params)):
@@ -185,7 +185,7 @@ class PrototypicalNetworkinfer(nn.Module):
         self.in_channels = in_channels
         self.out_channels = out_channels
         self.hidden_size = hidden_size
-        self.taskcla = num_tasks
+        Interval = num_tasks
         self.num_block = num_block
         block_size = int(hidden_size/num_block)
         self.conv1 = torch.nn.ModuleList()
@@ -205,12 +205,12 @@ class PrototypicalNetworkinfer(nn.Module):
             self.conv4.append(conv3x3_2(hidden_size, block_size))
 
         self.domain_out = torch.nn.ModuleList()
-        for _ in range(self.taskcla):
+        for _ in range(Interval):
             self.task = nn.Sequential(
                 conv3x3(hidden_size, out_channels)
             )
             self.domain_out.append(self.task)
-        print('self.taskcla', self.taskcla)
+
         
     def forward(self, inputs, domain_id, test= False):
 
@@ -248,7 +248,7 @@ class PrototypicalNetworkinfer(nn.Module):
   
     def set_req_grad(self, domain_id, req_grad):
 
-        for i in range(self.taskcla):
+        for i in range(Interval):
             if i!= domain_id:
                 params = list(self.domain_out[i].parameters()) 
                 for ind in range(len(params)):
