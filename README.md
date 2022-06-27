@@ -54,11 +54,19 @@ python train_AGEM.py      --data_path 'data/path'
 ```
 
 
+Training the meta-learning models (Prototypical Network) with HAT for sequential arriving datasets
+
+```python
+python train_HAT.py      --data_path 'data/path'
+```
+
+
 Training the meta-learning models (Prototypical Network) with UCB for sequential arriving datasets
 
 ```python
 python train_UCB.py      --data_path 'data/path'
 ```
+
 
 
 Training the meta-learning models (Prototypical Network) with our methods for sequential arriving datasets
